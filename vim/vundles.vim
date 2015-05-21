@@ -22,6 +22,7 @@ Bundle "gmarik/vundle"
 " ~/.vim/vundles/ to edit them:
 runtime ruby.vundle
 runtime languages.vundle
+runtime javascript.vundle
 runtime git.vundle
 runtime appearance.vundle
 runtime textobjects.vundle
