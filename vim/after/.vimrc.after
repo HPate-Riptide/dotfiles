@@ -1,0 +1,58 @@
+" Plugin 
+autocmd FileType javascript,css nnoremap <silent> <Leader>; :call cosco#commaOrSemiColon()<CR>
+autocmd FileType javascript,css inoremap <silent> <Leader>; <c-o>:call cosco#commaOrSemiColon()<CR>
+
+" Mappings for vim-jsbeautify - formats JS, CSS, and HTML
+autocmd FileType javascript,json noremap <buffer>  <c-f> :call JsBeautify()<cr>
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+
+" Visual mode mappings for beautifing a range of lines
+autocmd FileType javascript,json vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
+autocmd FileType html vnoremap <buffer> <c-f> :call RangeHactor.courses[courseList[$index]].progresstmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+
+" Make NERDTree reveal the current file
+nmap ,n :NERDTreeFind<CR>
+
+" Turn on rainbow brackets
+let g:rainbow_active = 1
+
+" Turn on tern keyboard shortcuts
+" <Leader> td  :TernDoc         Documentation under cursor
+" <Leader> tb  :TernDocBrowse   Browse documentation
+" <Leader> tt  :TernType        Type hints
+" <Leader> td  :TernDef         Jump to definition (yes, 'td' is duplicated)
+" <Leader> tpd :TernDefPreview  Jump to definition inside preview
+" <Leader> tsd :TernDefSplit    Definition in new split
+" <Leader> ttd :TernDefTab      Definition in new tab
+" <Leader> tr  :TernRefs        All references under cursor
+" <Leader> tR  :TernRename      Rename variable
+let maplocalleader = "\\"
+let g:tern_map_keys=1
+"let g:tern_show_argument_hints='on_hold'
+
+" Better mapping for <tab> for emmet
+let g:user_emmet_mode='a'
+let g:user_emmet_install_global = 0
+let g:use_emmet_complete_tag = 1
+"augroup emmet
+  "autocmd!
+  "autocmd FileType html,css,scss,less imap <expr> <Leader> emmet#expandAbbrIntelligent("\<tab>")
+"augroup END
+
+" Syntax coloring lines that are too long just slows down the world
+set synmaxcol=256
+
+" Allow <toggleSwitch> elements in angular code
+let g:syntastic_html_tidy_blocklevel_tags = ['toggle-switch']
+
+" keep blocks selected when indenting
+vnoremap < <gv
+vnoremap > >gv
+
+" set ctrlp to show hidden files
+let g:ctrlp_show_hidden = 1
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsSnippetsDir = '~/.yadr/vim/UltiSnips/'

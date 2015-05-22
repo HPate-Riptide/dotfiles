@@ -1,0 +1,9 @@
+Bundle "wookiehangover/jshint.vim"
+Bundle "moll/vim-node"
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'einars/js-beautify'
+Bundle "marijnh/tern_for_vim"
+Bundle 'lfilho/cosco.vim'
+Plugin 'luochen1990/rainbow'
+Plugin 'jedverity/feral-vim'
+Plugin 'airblade/vim-rooter'
