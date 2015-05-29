@@ -62,5 +62,13 @@ let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
 let g:UltiSnipsSnippetsDir = '~/.yadr/vim/UltiSnips/'
+
+" Enable tern autocomplete for Javascript
+autocmd FileType javascript setlocal omnifunc=tern#Complete
+
+" Set up libraries for https://github.com/othree/javascript-libraries-syntax.vim
+let g:used_javascript_libs = 'jquery,underscore,angularjs,chai,requirejs'
+
 let g:syntastic_javascript_checkers = ['jshint', 'jscs' ]
