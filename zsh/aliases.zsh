@@ -195,3 +195,5 @@ alias brewu='brew update && brew upgrade && brew cleanup && brew prune && brew d
 
 alias mysqlstart='sudo /usr/local/opt/mysql/bin/mysql.server start'
 alias mysqlstop='sudo /usr/local/opt/mysql/bin/mysql.server stop'
+
+alias ag='ag --hidden'
