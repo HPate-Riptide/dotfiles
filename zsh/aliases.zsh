@@ -197,3 +197,7 @@ alias mysqlstart='sudo /usr/local/opt/mysql/bin/mysql.server start'
 alias mysqlstop='sudo /usr/local/opt/mysql/bin/mysql.server stop'
 
 alias ag='ag --hidden'
+
+alias fig='docker-compose'
+alias dm='docker-machine'
+

@@ -1,0 +1,57 @@
+snippet map
+map(function ($1) {
+	$0
+});
+endsnippet
+
+snippet fe
+.expect(function(res){
+	$0
+})
+endsnippet
+
+snippet th
+.then(function () {
+	$0
+})
+endsnippet
+
+snippet tr
+trigger: {
+	'$1': {
+		$2: {$0}
+	}
+}
+endsnippet
+
+snippet tra
+{
+	type: 'transition',
+	from: '*',
+	to: '$1'
+},
+endsnippet
+
+snippet on
+onNext: {
+	action: 'scroll',
+	target: '$1',
+	duration: 500
+}
+endsnippet
+
+snippet po
+{
+	type: 'popover',
+	props: {
+		target: '$1',
+		title: '$2',
+		placement: 'top$3',
+		body: (
+			<div>
+				<p>$4</p>
+			</div>
+		)
+	}
+},
+endsnippet

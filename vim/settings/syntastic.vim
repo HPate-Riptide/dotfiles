@@ -1,23 +1,21 @@
-"mark syntax errors with :signs
+" mark syntax errors with :signs
 let g:syntastic_enable_signs=1
-"automatically jump to the error when saving the file
+" automatically jump to the error when saving the file
 let g:syntastic_auto_jump=0
-"show the error list automatically
-let g:syntastic_auto_loc_list=1
-"don't care about warnings
+" don't care about warnings
 let g:syntastic_quiet_messages = {'level': 'warnings'}
 
-" I have no idea why this is not working, as it used to
-" be a part of syntastic code but was apparently removed
-" This will make syntastic find the correct ruby specified by mri
-function! s:FindRubyExec()
-    if executable("rvm")
-        return system("rvm tools identifier")
-    endif
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-    return "ruby"
-endfunction
-
-if !exists("g:syntastic_ruby_exec")
-    let g:syntastic_ruby_exec = s:FindRubyExec()
-endif
+" always stick any detected errors into the |location-list|
+let g:syntastic_always_populate_loc_list = 1
+" error window will be automatically closed when no errors are detected, but not opened automatically
+let g:syntastic_auto_loc_list = 2
+let g:syntastic_check_on_open = 1
+" don't run the syntax check on save+quit
+let g:syntastic_check_on_wq = 0
+" runs all checkers that apply to the current filetype,
+" then aggregates errors found by all checkers and displays them.
+let g:syntastic_aggregate_errors = 1
