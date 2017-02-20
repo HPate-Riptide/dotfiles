@@ -121,7 +121,7 @@ filetype plugin on
 filetype indent on
 
 " Display tabs and trailing spaces visually
-set list listchars=tab:\ \ ,trail:·
+set list listchars=tab:▸\ ,trail:·
 
 set nowrap       "Don't wrap lines
 set linebreak    "Wrap lines at convenient points
@@ -210,6 +210,11 @@ autocmd User fugitive
 " fugitive buffers. This prevents this from becomming an issue:
 
 autocmd BufReadPost fugitive://* set bufhidden=delete
+nmap <Leader>gs :Gstatus<CR>
+nmap <Leader>gb :Gblame<CR>
+nmap <Leader>gg :Gbrowse<CR>
+nmap <Leader>gv :Gitv<CR>
+
 Plug 'tpope/vim-git'
 
 
@@ -242,6 +247,7 @@ Plug 'marijnh/tern_for_vim'
 Plug 'lfilho/cosco.vim'
 
 " JS Syntax files
+Plug 'nginx.vim'
 Plug 'elzr/vim-json'
 " Plug 'gabesoft/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
@@ -260,6 +266,25 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " Plug 'jtratner/vim-flavored-markdown'
 Plug 'scrooloose/syntastic'
+" Plug 'mtscout6/syntastic-local-eslint.vim'
+" ...
+au FileType javascript :call SetLocalEslint()
+" ...
+fun! SetLocalEslint()
+    let lcd = fnameescape(getcwd())
+    silent! exec "lcd" expand('%:p:h')
+    let local_eslint = finddir('node_modules', '.;') . '/.bin/eslint'
+
+    if matchstr(local_eslint, "^\/\\w") == ''
+        let local_eslint = fnameescape(getcwd()) . "/" . local_eslint
+    endif
+
+    if executable(local_eslint)
+        let b:syntastic_javascript_eslint_exec = local_eslint
+    endif
+
+    exec "lcd" lcd
+endfun
 " Plug 'nelstrom/vim-markdown-preview'
 " Plug 'skwp/vim-html-escape'
 Plug 'groenewege/vim-less'
