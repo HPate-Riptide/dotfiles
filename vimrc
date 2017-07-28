@@ -144,6 +144,7 @@ set wildignore+=vendor/rails/**
 set wildignore+=vendor/cache/**
 set wildignore+=*.gem
 set wildignore+=node_modules/**
+set wildignore+=bower_components/**
 set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=.git/**
@@ -208,10 +209,10 @@ autocmd User fugitive
 " Every time you open a git object using fugitive it creates a new buffer. 
 " This means that your buffer listing can quickly become swamped with 
 " fugitive buffers. This prevents this from becomming an issue:
-
 autocmd BufReadPost fugitive://* set bufhidden=delete
 nmap <Leader>gs :Gstatus<CR>
 nmap <Leader>gb :Gblame<CR>
+nmap <Leader>gp :Gpush<CR>
 nmap <Leader>gg :Gbrowse<CR>
 nmap <Leader>gv :Gitv<CR>
 
@@ -221,9 +222,9 @@ Plug 'tpope/vim-git'
 " -------------------------------------
 " Git Gutter settings
 " -------------------------------------
-" Plug 'airblade/vim-gitgutter'
-" let g:gitgutter_realtime = 0
-" let g:gitgutter_eager = 0
+Plug 'airblade/vim-gitgutter'
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
 
 
 " ------------------- Javascript ----------------------
@@ -240,8 +241,16 @@ Plug 'moll/vim-node'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'einars/js-beautify'
 
+autocmd FileType javascript.jsx setlocal formatprg=prettier\ --stdin\ --single-quote\ --print-width\ 120
+" Use formatprg when available
+let g:neoformat_try_formatprg = 1
+
+Plug 'sbdchd/neoformat'
+nmap <Leader>pf :Neoformat
+"autocmd BufWritePre *.js Neoformat
+
 " Smart plugging
-Plug 'marijnh/tern_for_vim'
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 " Semicolon insertion
 Plug 'lfilho/cosco.vim'
@@ -357,7 +366,7 @@ Plug 'goldfeld/ctrlr.vim'
 " Plug 'luochen1990/rainbow'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'airblade/vim-rooter'
-"Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 " Plug 'ervandew/supertab'
 Plug 'Yggdroot/indentLine'
 "Plug 'nathanaelkane/vim-indent-guides'
@@ -407,7 +416,7 @@ autocmd FileType javascript,css nnoremap <silent> <Leader>; :call cosco#commaOrS
 autocmd FileType javascript,css inoremap <silent> <C-e> <c-o>:call cosco#commaOrSemiColon()<CR>
 
 " Mappings for vim-jsbeautify - formats JS, CSS, and HTML
-autocmd FileType javascript,json noremap <buffer>  <c-f> :call JsBeautify()<cr>
+autocmd FileType javascript,json noremap <buffer>  <c-f> :Neoformat prettier<cr>
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
@@ -455,13 +464,13 @@ autocmd FileType javascript setlocal omnifunc=tern#Complete
 "let g:tern_show_argument_hints='on_hold'
 
 " Better mapping for <tab> for emmet
-"let g:user_emmet_mode='a'
-"let g:user_emmet_install_global = 0
-"let g:use_emmet_complete_tag = 1
-"augroup emmet
-  "autocmd!
+let g:user_emmet_mode='a'
+let g:user_emmet_install_global = 0
+let g:use_emmet_complete_tag = 1
+augroup emmet
+  autocmd!
   "autocmd FileType html,css,scss,less imap <expr> <Leader> emmet#expandAbbrIntelligent("\<tab>")
-"augroup END
+augroup END
 
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=256
@@ -634,10 +643,10 @@ map <silent> <D-8> :tabn 8<cr>
 map <silent> <D-9> :tabn 9<cr>
 
 " Resize windows with arrow keys
-nnoremap <D-Up> <C-w>+
-nnoremap <D-Down> <C-w>-
-nnoremap <D-Left> <C-w><
-nnoremap <D-Right>  <C-w>>
+nnoremap <S-Up> <C-w>+
+nnoremap <S-Down> <C-w>-
+nnoremap <S-Left> <C-w><
+nnoremap <S-Right>  <C-w>>
 
 " ============================
 " Tabularize - alignment
@@ -867,14 +876,12 @@ let g:syntastic_aggregate_errors = 1
 
 " Unimpaired configuration
 " Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
+nmap <Up> [e
+nmap <Down> ]e
 
 " Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
-
-
+vmap <Up> [egv
+vmap <Down> ]egv
 
 
 
